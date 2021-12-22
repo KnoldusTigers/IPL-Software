@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Admin User</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+</head>
+
+<body>
+
+
+
+   <style type="text/css">
+    body,td,th{
+        color: #000000;
+    }
+
+    body{
+        background-color: #F0F0F0;
+    }
+
+    .style1
+    {
+        font-family: arial;
+        font-size: 14px;
+        padding: 12px;
+        line-height: 25px;
+        border-radius: 4px;
+        text-decoration: none;
+
+    }
+
+    .style2
+    {
+        font-family: arial;
+        font-size: 17px;
+        padding: 12px;
+        line-height: 25px;
+        border-radius: 4px;
+        text-decoration: none;
+
+    }
+
+
+</style>
+
+</body>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">IPL Management System</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{'/Teams'}">Teams</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link "  th:href="@{'/showPlayers'}">Players</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link "   th:href="@{'/result'}">Result</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link "  th:href="@{'/viewMatch'}">Match</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link "  th:href="@{'/login'}">Admin</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br><br>
+<div align="center">
+  <div class="register"><br><br>
+<div class="container">
+  <table width="100%" height="100%" border="0" cellpadding="0" align="center">
+    <tr>
+      <td align="center" valign="middle">
+        <table class="table-bordered" width="350" border="0" cellpadding="3"cellspacing="3" bgcolor="#ffffff">
+
+          <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+
+
+            <tr>
+              <td height="25" colspan="2" align="left" valign="middle" bgcolor="#ffffff" class="style2">
+                <div align="center">
+                  <strong>User Login</strong>
+                </div>
+
+              </td>
+            </tr>
+
+            <tr>
+              <td>Username</td>
+              <td>
+
+                <input type="text" th:field="*{username}" class="form-control" />
+              </td>
+              <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username not vaild</td>
+
+            </tr>
+            <tr>
+              <td>Password</td>
+              <td><input type="password" th:field="*{password}" class="form-control" />
+              <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password not vaild</td>
+
+            </tr>
+            <tr>
+              <td colspan="2"><button type="submit"  class="btn btn-info" align="right">Login</button> </td>
+            </tr>
+
+          </form>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br><br>
+</div></div>
+</div>
+</body>
+</html>
+
+
+<style>
+
+    body{
+    background: url("https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1605&q=80");
+    background-position: 78%;
+    background-attachment: fixed;
+
+}
+    div.register{
+    background-color: rgba(0,0,0,0.5);
+    width: 65%;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255, 0.3);
+    box-shadow: 2px 2px 15px rgba(0,0,0,0.3);
+    color: #fff;
+}
+
+h1{
+    font-family: "Lobster Two script=latin rev=2";
+    font-weight: 400;
+    font-style: italic;
+}
+
+</style>

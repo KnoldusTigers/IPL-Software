@@ -1,0 +1,256 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title> Update Match</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <style>
+    body{
+     background-color: white;
+     padding: 0;
+     margin: 0;
+     overflow-x: hidden;
+     text-align: center;
+}
+
+header{
+     background-color: #212121;
+     padding: 30px;
+     box-shadow: 0 0 15px #000;
+}
+
+header li{
+     display: inline;
+     padding-left: 35px;
+}
+
+header li a{
+     color: white;
+     font-size:22px;
+     text-decoration: none;
+     padding: 10px;
+     transition: .3s ease;
+}
+
+header li a: hover{
+     color: #1b5e20;
+}
+
+header ul #adminLogin a:hover{
+     background-color: #1b5e20;
+}
+
+header ul #logo a{
+    color: white;
+    float: left;
+    top: -7px;
+    font-family: 'Playfair Display';
+    font-size: 20px;
+}
+</style>
+</head>
+<body>
+<header>
+    <ul>
+        <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
+        <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
+        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
+        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
+        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
+        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
+        <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
+    </ul>
+</header> <br><br>
+<h1><b>Update Match:  </b></h1><br>
+<div class="center">
+    <form action="#" th:action="@{/SaveMatch}" th:object="${match}" method="post">
+
+        <br>
+        <div class="mb-3">
+            <label   class="form-label">Team1</label>
+            <select th:field="*{team1}" class="custom-select" disabled>
+                <div th:each="team:${teamList}">
+                    <option th:value="${team.id}"  th:text="${team.teamname}" ></option>
+                </div>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label   class="form-label">Team2</label>
+            <select th:field="*{team2}" class="custom-select" disabled>
+                <div th:each="team:${teamList}">
+                    <option th:value="${team.id}" th:text="${team.teamname}"></option>
+                </div>
+            </select>
+        </div>
+        <div>
+            <input  type="date" id="demo" th:id="demo"  class="form-control" th:field="*{scheduledate}" />
+        </div>
+        <p th:if="${#fields.hasErrors('scheduledate')}" class="text-danger ml-1" th:errors="*{scheduledate}">Name Error</p>
+        <div>
+            <input  type="time" class="form-control" th:field="*{time}" />
+        </div>
+        <script>
+      var todayDate = new Date();
+            var tdate = todayDate.getDate();
+      var month = todayDate.getMonth()+1;
+      var year = todayDate.getUTCFullYear() - 0;
+
+      if(month < 10){
+        month = "0" + month
+      }
+      if(tdate < 10){
+        tdate = "0" + tdate;
+      }
+      var maxDate = year + "-" + month + "-" + tdate;
+      document.getElementById("demo").setAttribute("min", maxDate);
+      console.log(maxDate);
+    </script>
+
+        <style>label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+}
+
+input,
+label {
+    margin: .4rem 0;
+}
+</style>
+
+
+        <br>
+        <div class="input-group">
+            <span class="input-group-text ">Venue</span>
+            <!--                <input type="text" aria-label="Name" class="form-control" th:field="*{venue}" />-->
+            <select aria-label="Name" id="Venue" class="form-control" th:field="*{venue}">
+                <option value="M Chinnaswami Stadium ,Bangaluru">M Chinnaswami Stadium ,Bangaluru</option>
+                <option value="Narendra Modi Stadium, Gujrat">Narendra Modi Stadium, Gujrat</option>
+                <option value="Chepak Stadium, Chennai">Chepak Stadium, Chennai</option>
+                <option value="Eden Garden ,Kolkata ">Eden Garden ,Kolkata</option>
+                <option value="Arun jaitley Stadium,New Delhi ">Arun jaitley Stadium,New Delhi</option>
+                <option value="Green Park Stadium, Kanpur">Green Park Stadium, Kanpur</option>
+                <option value="Wankhede Stadium, Mumbai">Wankhede Stadium, Mumbai</option>
+                <option value="Swami Mansingh Stadium,Jaipur ">Swami Mansingh Stadium,Jaipur</option>
+                <option value="Holkar Stadium, Indore">Holkar Stadium, Indore</option>
+                <option value="Rajiv Gandhi Stadium, Hydrabad">Rajiv Gandhi Stadium, Hydrabad</option>
+                <option value="PCA Stadium,Mohali">PCA Stadium,Mohali</option>
+                <option value="JACA Stadium , Ranchi">JACA Stadium , Ranchi</option>
+
+            </select>
+
+        </div>
+        <br>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
+
+<style>
+
+.center form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .txt_field{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.txt_field input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.txt_field label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.txt_field span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+}
+
+.txt_field input: focus ~ label,
+.txt_field input: focus ~ label{
+    top: -5px;
+    color: #2691d9;
+}
+
+
+.txt_field input: focus ~ span::before,
+.txt_field input: focus ~ span::before{
+    width: 100%;
+    color: #2691d9;
+}
+
+input[type="submit"]{
+     width:100%;
+     height: 45px;
+     border: 1px solid;
+     background: #212121;
+     border-radius: 20px;
+     font-size: 18px;
+     color: white;
+     font-weight: 700;
+     cursor: pointer;
+     outline: none;
+     margin-bottom: 25px;
+}
+
+input[type"submit"]:hover{
+
+     border-color: #212121;
+     transition: .5s;
+}
+body{
+    margin:0;
+    padding:0;
+    font-family: montserrat;
+    background-color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.center{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .4);
+}
+
+.center h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+</style>
