@@ -109,7 +109,7 @@ public class MatchController {
     public String updatescore(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result) {
 
         if (match.getTeam1Overs() * 6 * 6 <= Double.valueOf(match.getTeam1Description())) {
-            System.out.println("++_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_fghjkjbnmoooo");
+            System.out.println("++_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+team1");
 
             result.addError(new FieldError("match", "Team1Description", "runs is not greater then balls"));
 
@@ -121,8 +121,7 @@ public class MatchController {
             result.addError(new FieldError("match", "Team2Description", "runs is not greater then balls"));
 
         }
-
-        if (result.hasErrors()) {
+         if (result.hasErrors()) {
             System.out.println("++_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_");
              return "UpdateScore";
         } else {

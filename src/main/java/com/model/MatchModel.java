@@ -26,10 +26,20 @@ public class MatchModel {
     private String time;
     private String venue;
 
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
     public String getTime() {
         return time;
     }
 
+    /**
+     * Sets time.
+     *
+     * @param time the time
+     */
     public void setTime(String time) {
         this.time = time;
     }

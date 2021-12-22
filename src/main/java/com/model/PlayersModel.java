@@ -4,6 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * The type Players model.
+ */
 @Entity(name = "players")
 @Table(name = "players")
 
@@ -12,10 +15,12 @@ public class PlayersModel  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private int id;
+
     @NotNull
     @Size(min=2, max=30)
     private String name;
-    //     private String player_team;
+
+
     @NotNull(message = "role can't be blank")
     @Size(min=2, max=30)
     private String player_role;
@@ -25,34 +30,74 @@ public class PlayersModel  {
     @JoinColumn(name = "team_id")
     private TeamModel team;
 
+    /**
+     * Gets team.
+     *
+     * @return the team
+     */
     public TeamModel getTeam() {
         return team;
     }
 
+    /**
+     * Sets team.
+     *
+     * @param team the team
+     */
     public void setTeam(TeamModel team) {
         this.team = team;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return  name;
     }
 
+    /**
+     * Sets name.
+     *
+     * @param name the name
+     */
     public void setName(String name) {
         this. name =  name;
     }
 
+    /**
+     * Gets player role.
+     *
+     * @return the player role
+     */
     public String getPlayer_role() {
         return player_role;
     }
 
+    /**
+     * Sets player role.
+     *
+     * @param player_role the player role
+     */
     public void setPlayer_role(String player_role) {
         this.player_role = player_role;
     }

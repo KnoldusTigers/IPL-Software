@@ -109,25 +109,25 @@ header ul #logo a{
 
             <div class="input-group">
                 <span class="input-group-text ">[[${match.team1.teamname}]] Over</span>
-                <input type="number" step="0.1" min="0" max="20" aria-label="Name" class="form-control" th:field="*{Team1Overs}" />
+                <input type="number" step="0.1" min="0" max="20" aria-label="Name" required placeholder="" class="form-control" th:field="*{Team1Overs}" />
             </div>
             <p th:if="${#fields.hasErrors('Team1Overs')}" th:errors="*{Team1Overs}">over error</p>
 
             <h3>Team2</h3>
             <div class="input-group">
                 <span class="input-group-text ">[[${match.team2.teamname}]] Score</span>
-                <input type="number" min="0" max="720" aria-label="Name" class="form-control" th:field="*{Team2Description}" />
+                <input type="number" min="0" max="720" aria-label="Name" required placeholder="" class="form-control" th:field="*{Team2Description}" />
             </div><br>
 
             <div class="input-group">
                 <span class="input-group-text ">[[${match.team2.teamname}]]  Wickets</span>
-                <input type="number" min="0" max="10" aria-label="Name" class="form-control" th:field="*{Team2Wickets}" />
+                <input type="number" min="0" max="10" aria-label="Name" required placeholder="" class="form-control" th:field="*{Team2Wickets}" />
                 <td th:if="${#fields.hasErrors('Team2Wickets')}" th:errors="*{Team2Wickets}">wickets error</td>
             </div><br>
 
             <div class="input-group">
                 <span class="input-group-text ">[[${match.team2.teamname}]]  Overs</span>
-                <input type="number" step="0.1" min="0" max="20" aria-label="Name" class="form-control" th:field="*{Team2Overs}" />
+                <input type="number" step="0.1" min="0" max="20" aria-label="Name" required placeholder="" class="form-control" th:field="*{Team2Overs}" />
                 <td th:if="${#fields.hasErrors('Team2Overs')}" th:errors="*{Team2Overs}">over error</td>
             </div><br>
 

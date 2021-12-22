@@ -97,6 +97,7 @@ tr:hover {
         <th>Team 1 </th>
         <th>Team 2</th>
         <th>Date</th>
+        <th>Time</th>
         <th>Venue</th>
         <th>Team1 Score</th>
         <th>Team2 Score</th>
@@ -107,6 +108,8 @@ tr:hover {
         <td th:text="${match.team1.teamname}"></td>
         <td th:text="${match.team2.teamname}"></td>
         <td th:text="${match.scheduledate}"></td>
+        <td th:text="${match.time}"></td>
+
         <td th:text="${match.venue}"></td>
         <td th:text="${match.Team1Description}"></td>
         <td th:text="${match.Team2Description}"></td>
