@@ -78,10 +78,10 @@ public class MatchController {
 //Save a scheduled match and return veiw match page
     @RequestMapping(value = "/SaveMatch", method = RequestMethod.POST)
     public String saveMatch(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result) {
-         if(matchService.DateIsExist(match.getScheduledate())&& matchService.teamIsExist(match.getTeam1(),result)) {
+         if(matchService.DateIsExist(match.getScheduledate(),result)&& matchService.teamIsExist(match.getTeam1(),result)) {
             result.addError(new FieldError("match", "team1", "team1 or team2 match already scheduled or"));
         }
-        else if(matchService.venueExists(match.getVenue(),result)&& matchService.DateIsExist(match.getScheduledate())) {
+        else if(matchService.venueExists(match.getVenue(),result)&& matchService.DateIsExist(match.getScheduledate(),result)) {
              System.out.println((match.getScheduledate())  + "+++++++++++++++++++++++controller");
             result.addError(new FieldError("match", "scheduledate", "date or venue already exists"));
         }

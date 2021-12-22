@@ -72,9 +72,9 @@ header ul #logo a{
             <select id="Team1" th:field="*{team1}" class="custom-select">
                 <div th:each="team:${teamList}">
                     <option th:value="${team.id}" th:text="${team.teamname}"></option>
-                    <td th:if="${#fields.hasErrors('team1')}" th:errors="*{team1}">team1 and team2 can't be same</td>
-
                 </div>
+                <td th:if="${#fields.hasErrors('team1')}" th:errors="*{team1}">team1 and team2 can't be same</td>
+
             </select>
 
         </div>

@@ -56,8 +56,8 @@ public class ResultService {
         int team2Score = Integer.parseInt(team2);
         String wicket2 = matchModel.getTeam2Wickets();
         int  team2wicket = Integer.parseInt(wicket2);
-        Long team1overs= Long.valueOf((String.valueOf(matchModel.getTeam1Overs())));
-        Long tema2overs= Long.valueOf( (String.valueOf(matchModel.getTeam2Overs())));
+        Double team1overs= Double.valueOf((String.valueOf(matchModel.getTeam1Overs())));
+        Double tema2overs= Double.valueOf( (String.valueOf(matchModel.getTeam2Overs())));
         System.out.println("===============--------------------------------------==============="+pointModel1.getMatchCount()+" "+pointModel2.getMatchCount());
 
 

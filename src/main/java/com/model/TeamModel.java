@@ -32,6 +32,18 @@ public class TeamModel {
     @OneToMany(mappedBy = "team")
     List<PointModel> pointModels;
 
+    public TeamModel(long id, String teamname, String captain,String state) {
+        this.teamname=teamname;
+        this.captain=captain;
+        this.state=state;
+        this.id=id;
+    }
+
+    public TeamModel(long id) {
+        this.id=id;
+    }
+
+
 
     public List<PointModel> getPointModels() {
         return pointModels;
@@ -88,13 +100,13 @@ public class TeamModel {
 
 
 
-    //constructer
-    public TeamModel(String teamname, Set<MatchModel> addteam2, List<PlayersModel> playersModel) {
-
-        this.teamname = teamname;
-        this.addteam2 = addteam2;
-        this.playersModel = playersModel;
-    }
+//    //constructer
+//    public TeamModel(String teamname, Set<MatchModel> addteam2, List<PlayersModel> playersModel) {
+//
+//        this.teamname = teamname;
+//        this.addteam2 = addteam2;
+//        this.playersModel = playersModel;
+//    }
     public TeamModel() {
 
     }

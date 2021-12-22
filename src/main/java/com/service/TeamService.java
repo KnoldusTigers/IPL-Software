@@ -8,29 +8,68 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Team service.
+ */
 @Service
 public class TeamService {
 
     @Autowired
-    private TeamRepo repo;
+    private TeamRepo teamRepo;
 
+
+
+    /**
+     * List all list.
+     *
+     * @return the list
+     */
     public List<TeamModel> listAll() {
 
-        return repo.findAll();
+        return teamRepo.findAll();
     }
-    public void save(TeamModel Teams) {
 
-        repo.save(Teams);
-    }
-    public TeamModel get(Long Id) {
+    /**
+     * Save teams.
+     *
+     * @param Teams the teams
+     */
+    public void saveTeams(TeamModel Teams) {
 
-        return repo.findById((Id)).get();
+        teamRepo.save(Teams);
     }
+
+    /**
+     * Gets ids.
+     *
+     * @param Id the id
+     * @return the ids
+     */
+    public TeamModel getIds(Long Id) {
+
+        return teamRepo.findById((Id)).get();
+    }
+
+    /**
+     * Find byname optional.
+     *
+     * @param teamname the teamname
+     * @return the optional
+     */
     @Transactional
     public Optional<TeamModel> findByname(String teamname) {
-        return repo.findByTeamname(teamname);
+        return teamRepo.findByTeamname(teamname);
     }
+
+    /**
+     * Team name exists boolean.
+     *
+     * @param teamname the teamname
+     * @return the boolean
+     */
     public boolean teamNameExists(String teamname){
         return findByname(teamname).isPresent();
     }
+
+
 }
