@@ -104,7 +104,9 @@ tr:hover {
 <br> <h1><b>Players</b></h1><br>
 
 
-<table align="center" >
+
+<table align="center" style="overflow-y:scroll;">
+
     <tr >
         <th>Player Name</th>
         <th>Player Team</th>
@@ -115,8 +117,18 @@ tr:hover {
         <td th:text="${player.team.teamname}"></td>
         <td th:text="${player.player_role}"></td>
     </tr>
+    </tbody>
 </table>
 
-
-</body>
+</div>
+<br>
+<br>
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">Ipl.com</a>
+    </div>
+    <!-- Copyright -->
+</footer></body>
 </html>

@@ -1,7 +1,6 @@
 package com.controller;
 import com.dao.TeamRepo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,16 +22,30 @@ import java.util.List;
  */
 @Controller
 public class PlayerController {
-    private static final Logger logger = LoggerFactory.getLogger(PlayerController.class);
 
     @Autowired
-    private PlayerService playerservice;
+    private final PlayerService playerservice;
     @Autowired
-    private TeamService teamservice;
+    private final TeamService teamservice;
     @Autowired
-    private PlayerRepo playerRepo;
+    private final PlayerRepo playerRepo;
     @Autowired
-    private TeamRepo teamRepo;
+    private final TeamRepo teamRepo;
+
+    /**
+     * Instantiates a new Player controller.
+     *
+     * @param playerservice the playerservice
+     * @param teamservice   the teamservice
+     * @param playerRepo    the player repo
+     * @param teamRepo      the team repo
+     */
+    public PlayerController(PlayerService playerservice, TeamService teamservice, PlayerRepo playerRepo, TeamRepo teamRepo) {
+        this.playerservice = playerservice;
+        this.teamservice = teamservice;
+        this.playerRepo = playerRepo;
+        this.teamRepo = teamRepo;
+    }
 
     /**
      * Add string.
@@ -59,21 +72,21 @@ public class PlayerController {
 //save player in database and check validations before save
     @RequestMapping(value = "/Save", method = RequestMethod.POST)
     public String savePlayer(@Valid @ModelAttribute("Player") final PlayersModel playersModelObj, BindingResult result) {
-        if(playerservice.playernameExists(String.valueOf(playersModelObj.getName()))){
+        if (playerservice.playernameExists(String.valueOf(playersModelObj.getName()))) {
 
-            result.addError(new FieldError("playersModelObj","name","name already exists"));
+            result.addError(new FieldError("playersModelObj", "name", "name already exists"));
         }
         if (result.hasErrors()) {
-            logger.info("Validation errors while submitting form.");
-            return "addPlayers";
+             return "addPlayers";
 
         }
         else {
-            if(teamRepo.findById(playersModelObj.getTeam().getId()).get().getPlayersModel().size()<15)
+            if (teamRepo.findById(playersModelObj.getTeam().getId()).get().getPlayersModel().size() < 15)
             {
+                result.addError(new FieldError("playersModelObj", "name", "name already exists"));
                 playerservice.save(playersModelObj);
-
             }
+
             return "redirect:showPlayers";
 
         }
@@ -90,8 +103,7 @@ public class PlayerController {
     public String updatePlayer(@Valid @ModelAttribute("Player") final PlayersModel playersModelObj, BindingResult result) {
 
         if (result.hasErrors()) {
-            logger.info("Validation errors while submitting form.");
-            return "updatePlayer";
+             return "updatePlayer";
 
         }
         else {

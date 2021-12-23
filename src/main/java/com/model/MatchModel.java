@@ -25,33 +25,7 @@ public class MatchModel {
     private String  scheduledate;
     private String time;
     private String venue;
-
-    /**
-     * Gets time.
-     *
-     * @return the time
-     */
-    public String getTime() {
-        return time;
-    }
-
-    /**
-     * Sets time.
-     *
-     * @param time the time
-     */
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     private String team1Description;
-
-    /**
-     * Gets time.
-     *
-     * @return the time
-     */
-
     private String team2Description;
 
     @Column(name = "team1_wickets", nullable = true)
@@ -75,9 +49,25 @@ public class MatchModel {
     @ManyToOne
     @JoinColumn(name = "teamid2")
     private TeamModel team2;
-
-
     private String result;
+
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
+    public String getTime() {
+        return time;
+    }
+
+    /**
+     * Sets time.
+     *
+     * @param time the time
+     */
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     /**
      * Gets team 2 description.

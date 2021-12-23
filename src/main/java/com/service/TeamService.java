@@ -67,7 +67,7 @@ public class TeamService {
      * @param teamname the teamname
      * @return the boolean
      */
-    public boolean teamNameExists(String teamname){
+    public boolean teamNameExists(String teamname) {
         return findByname(teamname).isPresent();
     }
 

@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
  * The type Login.
  */
 @Entity
-final public class Login {
+public final  class Login {
 
     @Id
     @Column(name = "id", nullable = false)

@@ -21,6 +21,15 @@ import java.util.Objects;
     private Loginservice userService;
 
     /**
+     * Instantiates a new Login controller.
+     *
+     * @param userService the user service
+     */
+    public LoginController(Loginservice userService) {
+        this.userService = userService;
+    }
+
+    /**
      * Login model and view.
      *
      * @return the model and view

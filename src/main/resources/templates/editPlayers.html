@@ -92,12 +92,16 @@ tr{
 
 <br> <h1><b>Edit Players</b></h1><br>
 
+
 <table align="center" >
+
     <tr >
         <th>Player Name</th>
         <th>Player Team</th>
         <th>Player Role</th>
     </tr>
+    <tbody>
+
     <tr th:each="player:${playerList}" style="color:black;">
         <td th:text="${player.name}">
             <!--      <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.team_name}]]</a>-->
@@ -111,7 +115,24 @@ tr{
         <td>
             <a th:href="@{'/delete/' + ${player.id}}"><i class="fa fa-trash-o" style="font-size:24px; color:red"></i></a>
         </td>
+    </tbody>
     </tr>
+
 </table>
 </body>
+<br>
+<div class="footer">
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">Ipl.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+</div>
+
+
+
+
 </html>

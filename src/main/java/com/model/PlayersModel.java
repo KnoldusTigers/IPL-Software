@@ -17,12 +17,12 @@ public class PlayersModel  {
     private int id;
 
     @NotNull
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     private String name;
 
 
     @NotNull(message = "role can't be blank")
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     private String player_role;
 
 
@@ -81,7 +81,7 @@ public class PlayersModel  {
      * @param name the name
      */
     public void setName(String name) {
-        this. name =  name;
+        this.name =  name;
     }
 
     /**

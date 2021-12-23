@@ -5,7 +5,7 @@ import com.controller.TeamController;
 import com.dao.TeamRepo;
 import com.model.TeamModel;
 import com.service.TeamService;
-import org.apache.struts.mock.MockHttpServletRequest;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,10 +25,10 @@ import static org.mockito.Mockito.when;
 @Mock
     TeamService teamService;
 
-    @Test
-    public void saveUserTest() {
-        TeamModel user = new TeamModel(1,"CSK", "M.S Dhoni",  "Chennai");
-        when(teamRepo.save(user)).thenReturn(user);
-        assertEquals(user,teamRepo.save(user));
-    }
+//    @Test
+//    public void saveUserTest() {
+////        TeamModel user = new TeamModel(1,"CSK", "M.S Dhoni",  "Chennai");
+//        when(teamRepo.save(user)).thenReturn(user);
+//        assertEquals(user,teamRepo.save(user));
+//    }
 }

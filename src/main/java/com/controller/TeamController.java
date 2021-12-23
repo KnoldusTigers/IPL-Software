@@ -17,8 +17,17 @@ import java.util.List;
 @Controller
 public class TeamController {
     @Autowired
-    private TeamService service;
+    private final TeamService service;
 
+
+    /**
+     * Instantiates a new Team controller.
+     *
+     * @param service the service
+     */
+    public TeamController(TeamService service) {
+        this.service = service;
+    }
 
     /**
      * Add string.
@@ -39,7 +48,7 @@ public class TeamController {
      * @param result the result
      * @return the string
      */
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveTeam(@Valid @ModelAttribute("Team") TeamModel tm, BindingResult result) {
         if (service.teamNameExists(tm.getTeamname())) {
             result.addError(new FieldError("pm", "teamname", "name already exists"));

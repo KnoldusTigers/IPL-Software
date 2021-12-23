@@ -73,11 +73,11 @@ header ul #logo a{
                 <div th:each="team:${teamList}">
                     <option th:value="${team.id}" th:text="${team.teamname}"></option>
                 </div>
-                <td th:if="${#fields.hasErrors('team1')}" th:errors="*{team1}">team1 and team2 can't be same</td>
 
             </select>
-
         </div>
+        <p th:if="${#fields.hasErrors('team1')}" class="text-danger ml-1" th:errors="*{team1}">Name Error</p>
+
         <br>
 
         <div class="mb-3">
@@ -89,7 +89,7 @@ header ul #logo a{
                 </div>
 
             </select>
-            <td th:if="${#fields.hasErrors('team2')}" th:errorclass="error" th:errors="*{team2}">team1 and team2 can't be same</td>
+            <p th:if="${#fields.hasErrors('team2')}" class="text-danger ml-1" th:errors="*{team2}">Name Error</p>
 
         </div>
         <br>

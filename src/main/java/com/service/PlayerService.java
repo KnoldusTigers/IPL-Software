@@ -54,7 +54,7 @@ public class PlayerService {
      * @param playername the playername
      * @return the boolean
      */
-    public boolean playernameExists(String playername){
+    public boolean playernameExists(String playername) {
         return findByPlayersplayer_name(playername).isPresent();
     }
 

@@ -15,7 +15,7 @@ public class TeamModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
     @NotNull
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     private String teamname;
     private String state;
     private String captain;
@@ -27,20 +27,20 @@ public class TeamModel {
     private Set<MatchModel> addteam2;
 
     @OneToMany(mappedBy = "team")
-    List<PlayersModel> playersModel;
+    private List<PlayersModel> playersModel;
 
     @OneToMany(mappedBy = "team")
-    List<PointModel> pointModels;
+   private List<PointModel> pointModels;
 
-    public TeamModel(long id, String teamname, String captain,String state) {
-        this.teamname=teamname;
-        this.captain=captain;
-        this.state=state;
-        this.id=id;
+    public TeamModel(long id, String teamname, String captain, String state) {
+        this.teamname = teamname;
+        this.captain = captain;
+        this.state = state;
+        this.id = id;
     }
 
     public TeamModel(long id) {
-        this.id=id;
+        this.id = id;
     }
 
 
@@ -100,7 +100,7 @@ public class TeamModel {
 
 
 
-//    //constructer
+    //    //constructer
 //    public TeamModel(String teamname, Set<MatchModel> addteam2, List<PlayersModel> playersModel) {
 //
 //        this.teamname = teamname;

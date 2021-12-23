@@ -12,7 +12,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class Loginservice {
     @Autowired
-   private LoginRepository loginRepository;
+   private final LoginRepository loginRepository;
+
+    /**
+     * Instantiates a new Loginservice.
+     *
+     * @param loginRepository the login repository
+     */
+    public Loginservice(LoginRepository loginRepository) {
+        this.loginRepository = loginRepository;
+    }
 
     /**
      * Login login.
