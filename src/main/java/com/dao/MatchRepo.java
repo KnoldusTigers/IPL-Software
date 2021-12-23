@@ -1,3 +1,4 @@
+
 package com.dao;
 
 import com.model.MatchModel;
@@ -28,7 +29,19 @@ public interface MatchRepo extends CrudRepository<MatchModel, Integer> {
      */
     Optional<MatchModel> findByScheduledate(String date);
 
-    public Optional<MatchModel> findByTeam1(TeamModel team1);
-    List<MatchModel> findAllByTeam1(TeamModel team1);
+    /**
+     * Find by team 1 optional.
+     *
+     * @param team1 the team 1
+     * @return the optional
+     */
+    Optional<MatchModel> findByTeam1(TeamModel team1);
 
+    /**
+     * Find all by team 1 list.
+     *
+     * @param team1 the team 1
+     * @return the list
+     */
+    List<MatchModel> findAllByTeam1(TeamModel team1);
 }

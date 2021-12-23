@@ -64,7 +64,14 @@ public class MatchService {
 
         matchRepo.deleteById(id);
     }
-    //public boolean cehckVenue(String schduledate, String venue){
+
+    /**
+     * Find venue is exist optional.
+     *
+     * @param venue the venue
+     * @return the optional
+     */
+//public boolean cehckVenue(String schduledate, String venue){
 //
 //        for(int i=0;i<3;i++){
 //            MatchModel matchModelVenue=matchRepo.findByVenue(venue).get();
@@ -85,10 +92,17 @@ public class MatchService {
     public Optional<MatchModel> findVenueIsExist (String venue) {
         return matchRepo.findByVenue(venue);
     }
+
+    /**
+     * Venue exists boolean.
+     *
+     * @param venue  the venue
+     * @param result the result
+     * @return the boolean
+     */
     public boolean venueExists (String venue, BindingResult result) {
         try {
-            return findVenueIsExist(venue).isPresent();
-        }
+            return findVenueIsExist(venue).isPresent(); }
         catch (Exception e) {
             result.addError(new FieldError("match", "scheduledate", "date or venue already exist"));
         }
@@ -102,7 +116,7 @@ public class MatchService {
      * @return the optional
      */
     @Transactional
-    public Optional<MatchModel> findDateIsExist (String date){
+    public Optional<MatchModel> findDateIsExist (String date) {
 
         return matchRepo.findByScheduledate(date);
 
@@ -111,22 +125,43 @@ public class MatchService {
     /**
      * Date is exist boolean.
      *
-     * @param date the date
+     * @param date   the date
+     * @param result the result
      * @return the boolean
      */
-    public boolean DateIsExist (String date){
-        return findDateIsExist(date).isPresent();
+    public boolean DateIsExist (String date, BindingResult result) {
+        try {
+            return findDateIsExist(date).isPresent(); }
+        catch (Exception e) {
+            result.addError(new FieldError("match", "scheduledate", "teams already schedule on same date"));
+        }
+        return false;
 
     }
+
+    /**
+     * Find team optional.
+     *
+     * @param team1 the team 1
+     * @return the optional
+     */
     @Transactional
-    public Optional<MatchModel> findTeam (TeamModel team1){
+    public Optional<MatchModel> findTeam (TeamModel team1) {
 
         return matchRepo.findByTeam1(team1);
 
     }
-    public boolean teamIsExist (TeamModel team1,BindingResult result){
+
+    /**
+     * Team is exist boolean.
+     *
+     * @param team1  the team 1
+     * @param result the result
+     * @return the boolean
+     */
+    public boolean teamIsExist (TeamModel team1, BindingResult result) {
         try {
-            return findTeam(team1).isPresent();        }
+            return findTeam(team1).isPresent(); }
         catch (Exception e) {
             result.addError(new FieldError("match", "team1", "teams already exist"));
         }

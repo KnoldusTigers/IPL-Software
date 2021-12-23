@@ -23,7 +23,7 @@ public class MatchModel {
     @NotNull
     @Size(min = 4, message = "fill all fields")
     private String  scheduledate;
-
+    private String time;
     private String venue;
     private String team1Description;
     private String team2Description;
@@ -49,9 +49,25 @@ public class MatchModel {
     @ManyToOne
     @JoinColumn(name = "teamid2")
     private TeamModel team2;
-
-
     private String result;
+
+    /**
+     * Gets time.
+     *
+     * @return the time
+     */
+    public String getTime() {
+        return time;
+    }
+
+    /**
+     * Sets time.
+     *
+     * @param time the time
+     */
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     /**
      * Gets team 2 description.

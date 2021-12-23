@@ -16,7 +16,7 @@
 }
 
 header{
-     background-color: #212121;
+     background-color: black;
      padding: 30px;
      box-shadow: 0 0 15px #000;
 }
@@ -82,10 +82,8 @@ tr:hover {
     <ul>
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
         <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
-        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
-        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
-        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
+        <li><a th:href="@{'/editPlayers'}">Player Management</a></li>
+        <li><a th:href="@{'/editMatch'}">Match Management</a></li>
         <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
     </ul>
 </header>
@@ -101,6 +99,7 @@ tr:hover {
         <th>Team1 Score</th>
         <th>Team2 Score</th>
         <th>Result</th>
+        <th>Schedule</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
@@ -112,13 +111,19 @@ tr:hover {
         <td th:text="${match.Team1Description}"></td>
         <td th:text="${match.Team2Description}"></td>
         <td th:text="${match.result}"></td>
+
+        <td>
+            <a   th:href="@{'/matchSchedule/'}"><i class="fa fa-folder-open-o" style="font-size:24px; color:green"></i></a>
+        </td>
+
         <td>
             <a   th:href="@{'/editmatch/' + ${match.matchid}}"><i class="fa fa-edit" style="font-size:24px; color:green"></i></a>
         </td>
-        <td>
 
+        <td>
             <a th:href="@{'/deletematch/' + ${match.matchid}}"><i class="fa fa-trash-o" style="font-size:24px; color:red"></i></a>
         </td>
+
     </tr>
 </table>
 </body>

@@ -4,6 +4,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
   <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
   <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title> Home | IPL</title>
   <style>
     body{
@@ -15,7 +16,7 @@
 }
 
 header{
-     background-color: #212121;
+     background-color: black;
      padding: 40px;
      box-shadow: 0 0 15px #000;
 }
@@ -82,6 +83,9 @@ tr:hover {
   background-color: black;
   color:white;
 }
+
+
+
 </style>
 </head>
 <body>
@@ -94,9 +98,13 @@ tr:hover {
     <li><a th:href="@{'/showPlayers'}"> Players</a></li>
     <li><a th:href="@{'/result'}"> Result</a></li>
     <li><a th:href="@{'/viewMatch'}"> Matches</a></li>
+
+</script>
     <li id="adminLogin"><a class="nav-link "  th:href="@{'/Admin'}">Admin Panel </a> </li>
   </ul>
 </header>
+
+
 
 <br><br>
   <br> <h1><b>Points</b></h1><br>
@@ -116,6 +124,8 @@ tr:hover {
       <td  th:text="${pot.point}"></td>
     </tr>
   </table>
+
+
 </body>
 </html>
 

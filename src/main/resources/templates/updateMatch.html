@@ -56,21 +56,22 @@ header ul #logo a{
     <ul>
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
         <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
-        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
-        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
-        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
+        <li><a th:href="@{'/addPlayers'}">Player Management</a></li>
+        <li><a th:href="@{'/matchSchedule'}"> Match Management</a></li>
         <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
     </ul>
 </header> <br><br>
 <h1><b>Update Match:  </b></h1><br>
 <div class="center">
-    <form action="#" th:action="@{/SaveMatch}" th:object="${match}" method="post">
-
+    <form action="#" th:action="@{/upMatch}" th:object="${match}" method="post">
+        <div class="input-group">
+            <span class="input-group-text" hidden >Match ID</span>
+            <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{matchid}" />
+        </div>
         <br>
         <div class="mb-3">
             <label   class="form-label">Team1</label>
-            <select th:field="*{team1}" class="custom-select" disabled>
+            <select th:field="*{team1}" class="custom-select"  >
                 <div th:each="team:${teamList}">
                     <option th:value="${team.id}"  th:text="${team.teamname}" ></option>
                 </div>
@@ -79,7 +80,7 @@ header ul #logo a{
 
         <div class="mb-3">
             <label   class="form-label">Team2</label>
-            <select th:field="*{team2}" class="custom-select" disabled>
+            <select th:field="*{team2}" class="custom-select"  aria-readonly="true">
                 <div th:each="team:${teamList}">
                     <option th:value="${team.id}" th:text="${team.teamname}"></option>
                 </div>
@@ -89,6 +90,9 @@ header ul #logo a{
             <input  type="date" id="demo" th:id="demo"  class="form-control" th:field="*{scheduledate}" />
         </div>
         <p th:if="${#fields.hasErrors('scheduledate')}" class="text-danger ml-1" th:errors="*{scheduledate}">Name Error</p>
+        <div>
+            <input  type="time" class="form-control" th:field="*{time}" />
+        </div>
         <script>
       var todayDate = new Date();
             var tdate = todayDate.getDate();

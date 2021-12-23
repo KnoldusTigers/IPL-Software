@@ -16,7 +16,7 @@
 }
 
 header{
-     background-color: #212121;
+     background-color: black;
      padding: 30px;
      box-shadow: 0 0 15px #000;
 }
@@ -58,16 +58,15 @@ header ul #logo a{
     <ul>
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
         <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
-        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
-        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
-        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
+        <li><a th:href="@{'/editPlayers'}">Player Management</a></li>
+        <li><a th:href="@{'/editMatch'}">Match Management</a></li>
         <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
     </ul>
 </header>
 
 <br><br>
 <br> <h1><b>Hey! Admin</b></h1><br>
+
 <img src="" th:src="@{images/ezgif.com-gif-maker.gif}" alt="" class="center">
 
 </body>
