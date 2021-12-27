@@ -13,6 +13,8 @@ import com.model.PlayersModel;
 import com.model.TeamModel;
 import com.service.PlayerService;
 import com.service.TeamService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -71,26 +73,33 @@ public class PlayerController {
      */
 //save player in database and check validations before save
     @RequestMapping(value = "/Save", method = RequestMethod.POST)
-    public String savePlayer(@Valid @ModelAttribute("Player") final PlayersModel playersModelObj, BindingResult result) {
+    public String savePlayer(@Valid @ModelAttribute("Player") final PlayersModel playersModelObj, BindingResult result, RedirectAttributes redirectAttributes) {
         if (playerservice.playernameExists(String.valueOf(playersModelObj.getName()))) {
 
-            result.addError(new FieldError("playersModelObj", "name", "name already exists"));
+            result.addError(new FieldError("playersModelObj", "name", "Player name already exists"));
         }
         if (result.hasErrors()) {
+
              return "addPlayers";
 
         }
-        else {
-            if (teamRepo.findById(playersModelObj.getTeam().getId()).get().getPlayersModel().size() < 15)
-            {
-                result.addError(new FieldError("playersModelObj", "name", "name already exists"));
-                playerservice.save(playersModelObj);
-            }
 
-            return "redirect:showPlayers";
+            if (teamRepo.findById(playersModelObj.getTeam().getId()).get().getPlayersModel().size() < 5) {
+                playerservice.save(playersModelObj);
+                redirectAttributes.addFlashAttribute("Addmessage", "Player Added successfully");
+                redirectAttributes.addFlashAttribute("messageType", "player");
+                redirectAttributes.addFlashAttribute("alertType", "success");
+            }
+            else{
+                redirectAttributes.addFlashAttribute("message", "Players can not be more than 5");
+                redirectAttributes.addFlashAttribute("messageType", "player");
+                redirectAttributes.addFlashAttribute("alertType", "error");
+                return "redirect:addPlayers";
+            }
+            return "redirect:editPlayers";
 
         }
-    }
+
 
     /**
      * Update player string.
@@ -100,7 +109,7 @@ public class PlayerController {
      * @return the string
      */
     @RequestMapping(value = "/UpdatePlayers", method = RequestMethod.POST)
-    public String updatePlayer(@Valid @ModelAttribute("Player") final PlayersModel playersModelObj, BindingResult result) {
+    public String updatePlayer(@Valid @ModelAttribute("Player") final PlayersModel playersModelObj, BindingResult result, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
              return "updatePlayer";
@@ -108,7 +117,10 @@ public class PlayerController {
         }
         else {
             playerservice.save(playersModelObj);
-            return "redirect:showPlayers";
+            redirectAttributes.addFlashAttribute("Updatemessage", "Player Updated successfully");
+            redirectAttributes.addFlashAttribute("messageType", "player");
+            redirectAttributes.addFlashAttribute("alertType", "success");
+            return "redirect:editPlayers";
 
         }
     }
@@ -183,11 +195,14 @@ public class PlayerController {
      * @param id the id
      * @return the string
      */
-//delete player
-    @RequestMapping("/delete/{id}")
-    public String deletestudent(@PathVariable(name = "id") int id) {
+     @RequestMapping("/delete/{id}")
+    public String deletestudent(@PathVariable(name = "id") int id, RedirectAttributes redirectAttributes) {
         playerservice.delete(id);
-        return "redirect:/editPlayers";
+         redirectAttributes.addFlashAttribute("deletemessage", "Player Deleted successfully");
+         redirectAttributes.addFlashAttribute("messageType", "player");
+         redirectAttributes.addFlashAttribute("alertType", "success");
+
+         return "redirect:/editPlayers";
     }
 }
 

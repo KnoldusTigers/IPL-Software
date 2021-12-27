@@ -88,49 +88,62 @@ tr{
 <tr> </tr>
 <br>
 
-<br> <h1><b>Player Management</b></h1><br>
-<br>
-<div class="alert alert-success"  role="alert" th:text="${Addmessage}" th:if="${Addmessage}"></div>
-<div class="alert alert-success"  role="alert" th:text="${deletemessage}" th:if="${deletemessage}"></div>
-<div class="alert alert-success"  role="alert" th:text="${Updatemessage}" th:if="${Updatemessage}"></div>
+<br> <h1><b>Team Management</b></h1><br>
+<div class="alert alert-success" id="success-alert" role="alert" th:text="${success}" th:if="${success}"></div>
 
+<div class="alert alert-success"  th:text="${message}" th:if="${message}"> </div>
+<div class="alert alert-success"  th:text="${messageEdit}" th:if="${messageEdit}"> </div>
+
+<!--<script>-->
+<!--    $(document).ready (function(){-->
+<!--   $("#success-alert").hide();-->
+<!--       $("#success-alert").alert();-->
+<!--      window.setTimeout(function () {-->
+<!--         $("#success-alert").alert('close');-->
+<!--      }, 2000);-->
+
+<!--});-->
+
+<!--</script>-->
+
+<br>
 <td>
-    <a th:href="@{'/addPlayers/'}"> <input type="submit" value="Add Player" style="color:blue">
+    <a th:href="@{'/addTeam/'}"> <input type="submit" value="Add Team" style="color:blue">
     </a>
 </td>
 <br>
 <br>
-<div id="table-scroll">
+<div id="table-scroll" >
+
 <table align="center" class="css-serial" >
     <tr >
         <th>S.No</th>
-        <th>Player Name</th>
-        <th>Player Team</th>
-        <th>Player Role</th>
-         <th>Edit Player</th>
+        <th>Team</th>
+        <th>Captain</th>
+        <th>State</th>
+        <th>Edit Player</th>
         <th>Delete Player</th>
     </tr>
-    <tr th:each="player:${playerList}" style="color:black;">
+
+    <tr th:each="team:${teamList}" style="color:black;">
         <td th:text></td>
-        <td th:text="${player.name}">
+        <td th:text="${team.teamname}">
             <!--      <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.team_name}]]</a>-->
         </td>
-        <td th:text="${player.team.teamname}"></td>
-        <td th:text="${player.player_role}"></td>
+        <td th:text="${team.captain}"></td>
+        <td th:text="${team.state}"></td>
 
         <td>
-            <a  th:href="@{'/edit/' + ${player.id}}"><i class="fa fa-edit" style="font-size:24px; color:green"></i></a>
+            <a  th:href="@{'/teamEdit/'+ ${team.id}}"><i class="fa fa-edit" style="font-size:24px; color:green"></i></a>
         </td>
 
         <td>
-            <a th:href="@{'/delete/' + ${player.id}}"><i class="fa fa-trash-o" style="font-size:24px; color:red"></i></a>
+            <a th:href="@{'/deleteTeam/' + ${team.id}}"><i class="fa fa-trash-o" style="font-size:24px; color:red"></i></a>
         </td>
 
     </tr>
 </table>
 </div>
-
-<!--style for  serialno. , scrollbar , footer-->
 <style>
      .css-serial {
   counter-reset: serial-number;  /* Set the serial number counter to 0 */
@@ -139,22 +152,23 @@ tr{
 .css-serial td:first-child:before {
   counter-increment: serial-number;  /* Increment the serial number counter */
   content: counter(serial-number);  /* Display the counter */
+  }
+
+#table-scroll {
+  height:500px;
+  overflow:auto;
+  margin-top:20px;
 }
 #footer {
             position: fixed;
 
-            bottom: 28;
+            bottom: 25;
             width: 100%;
             /* Height of the footer*/
             height: 40px;
 
         }
-        #table-scroll {
-  height:500px;
-  overflow:auto;
-  margin-top:20px;
-}
-</style>
+ </style>
 <footer class="footer navbar-fixed-bottom" id="footer">
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:  black">
@@ -163,5 +177,7 @@ tr{
     </div>
     <!-- Copyright -->
 </footer>
+<br>
+<br>
 </body>
 </html>

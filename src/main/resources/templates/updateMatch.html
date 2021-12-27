@@ -55,16 +55,21 @@ header ul #logo a{
 <header>
     <ul>
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
-        <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
-        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
-        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
-        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
-        <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
+        <li><a th:href="@{'/editTeam'}">Team Management</a></li>
+        <li><a th:href="@{'/addPlayers'}">Player Management</a></li>
+        <li><a th:href="@{'/matchSchedule'}"> Match Management</a></li>
+        <li><a th:href="@{'/EditListScore'}">Score Board</a></li>
     </ul>
 </header> <br><br>
 <h1><b>Update Match:  </b></h1><br>
 <div class="center">
+    <br>
+    <br>
+    <td>
+        <a th:href="@{'/updateMatch/'}"> <input type="button" value="refresh" style="color:blue">
+        </a>
+    </td>
+    <br>
     <form action="#" th:action="@{/upMatch}" th:object="${match}" method="post">
         <div class="input-group">
             <span class="input-group-text" hidden >Match ID</span>

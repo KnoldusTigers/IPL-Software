@@ -104,31 +104,55 @@ tr:hover {
 <br> <h1><b>Players</b></h1><br>
 
 
-
-<table align="center" style="overflow-y:scroll;">
+<div id="table-scroll">
+<table align="center" style="overflow-y:scroll;" class="css-serial" >
 
     <tr >
+        <th>S.No</th>
         <th>Player Name</th>
         <th>Player Team</th>
         <th>Player Role</th>
     </tr>
     <tr th:each="player:${playerList}">
+        <td th:text></td>
         <td th:text="${player.name}"></td>
         <td th:text="${player.team.teamname}"></td>
         <td th:text="${player.player_role}"></td>
     </tr>
     </tbody>
 </table>
-
 </div>
-<br>
-<br>
-<footer class="bg-light text-center text-lg-start">
+</div>
+ <style>
+     .css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
+#table-scroll {
+  height:500px;
+  overflow:auto;
+  margin-top:20px;
+}
+
+#footer {
+position: fixed;
+
+bottom: 25;
+width: 100%;
+/* Height of the footer*/
+height: 40px;
+
+}
+</style>
+<footer class="footer navbar-fixed-bottom" id="footer">
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2021 Copyright:
-        <a class="text-dark" href="https://mdbootstrap.com/">Ipl.com</a>
+    <div class="text-center p-3" style="background-color:  black">
+
+        <a class="text-white" href="https://mdbootstrap.com/">© 2021 Copyright: Ipl.com</a>
     </div>
-    <!-- Copyright -->
 </footer></body>
 </html>

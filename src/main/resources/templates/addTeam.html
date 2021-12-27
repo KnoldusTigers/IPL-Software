@@ -17,7 +17,7 @@
 }
 
 header{
-     background-color: #212121;
+     background-color: black;
      padding: 30px;
      box-shadow: 0 0 15px #000;
 }
@@ -56,16 +56,20 @@ header ul #logo a{
 <header>
     <ul>
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
-        <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
-        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
-        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
-        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
-        <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
+        <li><a th:href="@{'/editTeam'}">Team Management</a></li>
+        <li><a th:href="@{'/editPlayers'}">Player Management</a></li>
+        <li><a th:href="@{'/editMatch'}">Match Management</a></li>
+        <li><a th:href="@{'/EditListScore'}">Score Board</a></li>
     </ul>
 </header>
 <br>
 <br> <h1><b>Create New Team: </b></h1><br>
+<br>
+<br>
+<td>
+    <a th:href="@{'/addTeam/'}"> <input type="button" value="refresh" style="color:blue">
+    </a>
+</td>
 <div class="center">
     <form action="#" th:action="@{/save}" th:object="${Team}" method="post">
         <div class="txt_field">
@@ -94,13 +98,12 @@ header ul #logo a{
                 <option value=" Rajasthan"> Rajasthan</option>
             </select>
         </div> <br>
-        <input type="submit"  value="Submit">
+
+        <input type="submit" value="Submit">
         <td th:if="${#fields.hasErrors('teamname')}" class="text-danger ml-1" th:errorclass="error" th:errors="*{teamname}"></td>
     </form>
 
-    <script>
 
-</script>
 </div>
 </body>
 </html>
@@ -209,4 +212,3 @@ body{
 }
 
 </style>
-

@@ -55,15 +55,22 @@ header ul #logo a{
 <header>
     <ul>
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
-        <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
-        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
-        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
-        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
-        <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
+        <li><a th:href="@{'/editTeam'}">Team Management</a></li>
+        <li><a th:href="@{'/editPlayers'}">Player Management</a></li>
+        <li><a th:href="@{'/editMatch'}">Match Management</a></li>
+        <li><a th:href="@{'/EditListScore'}">Score Board</a></li>
     </ul>
 </header> <br><br>
-<h1><b>Schedule a Match:  </b></h1><br>
+
+
+<h1><b>Schedule a Match  </b></h1><br>
+<br>
+<br>
+<td>
+    <a th:href="@{'/matchSchedule/'}"> <input type="button" value="refresh" style="color:blue">
+    </a>
+</td>
+
 <div class="center">
     <form action="#" th:action="@{/SaveMatch}" th:object="${match}" method="post">
         <br>
@@ -117,25 +124,7 @@ header ul #logo a{
       document.getElementById("demo").setAttribute("min", maxDate);
       console.log(maxDate);
     </script>
-        <script th:inline="javascript">
-    // function checkDate() {
-    //     var selectedDate = document.getElementById('meeting-time').value;
-    //     var now = new Date();
-    //     if (selectedDate < now) {
-    //         alert("Date must be in the future");
-    //     }
-    // }
 
-    window.onload = function(){
-        elem = document.getElementById("meeting-time")
-        var iso = new Date().toISOString()replace(/:[^:]*$/,'');
-        console.log("Yeaaa I am running::::::::");
-        var minDate = iso.substring(0,iso.length-1);
-        elem.value = minDate
-        elem.min = minDate
-    };
-
-</script>
 
         <br>
 

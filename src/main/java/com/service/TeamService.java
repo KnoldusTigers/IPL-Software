@@ -17,8 +17,6 @@ public class TeamService {
     @Autowired
     private TeamRepo teamRepo;
 
-
-
     /**
      * List all list.
      *
@@ -71,5 +69,12 @@ public class TeamService {
         return findByname(teamname).isPresent();
     }
 
+    public TeamModel getIds(String Id) {
 
+        return teamRepo.findById(Long.valueOf(Id)).get();
+    }
+    public void deleteTeams(Long id) {
+
+        teamRepo.deleteById(id);
+    }
 }

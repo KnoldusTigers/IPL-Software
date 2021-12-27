@@ -1,57 +1,64 @@
 package com.Service;
-
 import com.dao.TeamRepo;
+
+import com.model.TeamModel;
 import com.service.TeamService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.event.annotation.BeforeTestMethod;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 
-/**
- * The type Team service test.
- */
-@ExtendWith(MockitoExtension.class)
-public class TeamServiceTest {
-    @Mock
-    private TeamRepo teamRepo;
+@SpringBootTest
+class TeamServiceTest {
 
-    @Mock
-    private TeamService teamService;
+    @Autowired
+    TeamRepo teamRepo;
 
-    /**
-     * Sets up.
-     */
+    @Autowired
+    TeamService teamService;
 
 
-    /**
-     * Gets all person.
-     */
+
+
     @Test
-    void getAllPerson() {
-        teamService.listAll();
-        (teamRepo).findAll();
+    void saveTeam_ReturnTrueIfGivenTeamIsSaved() {
+        TeamModel team3 = new TeamModel(3L,"KXIP","yuvraj","punjab");
+        teamService.saveTeams(team3);
+        assertTrue(teamService.findByname(team3.getTeamname()).isPresent());
+    }
+//
+//    @Test
+//    void getNewTeamObject_CorrectIfReturnNewTeamObject() {
+//        Team team = teamService.getNewTeamObject();
+//        assertInstanceOf(Team.class, team);
+//    }
+
+//    @Test
+//    void getTeamById_ReturnTrueIfTeamFound(){
+//        Boolean actual = teamService.getTeamById(2L).isPresent();
+//        assertTrue(actual);
+//    }
+//
+    @Test
+    void getAllTeams_ReturnTrueIfReturnTeamList() {
+        List<TeamModel> teams = teamService.listAll();
+        int actualSize = teams.size();
+        System.out.println(actualSize);
+        assertTrue(actualSize > 1);
     }
 
-    /**
-     * Get team.
-     */
     @Test
-    void getTeam(){
-        teamService.findByname("CSK");
-        verify(teamRepo).findByTeamname("CSK");
+    void getTeamByName_ReturnTrueIfTeamFound(){
+        boolean actual = teamService.findByname("CSK").isPresent();
+        System.out.println(actual);
+        assertTrue(actual);
     }
 
-    /**
-     * Get teams.
-     */
-    @Test
-    void getTeams(){
-        teamService.teamNameExists("RCB");
-        verify(teamRepo).findByTeamname("RCB");
-
-    }
 
 }
-

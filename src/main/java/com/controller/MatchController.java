@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -104,14 +105,13 @@ public class MatchController {
      */
 //Save a scheduled match and return veiw match page
     @RequestMapping(value = "/SaveMatch", method = RequestMethod.POST)
-    final String saveMatch(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result) {
+    final String saveMatch(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result, RedirectAttributes redirectAttributes) {
         if (matchService.DateIsExist(match.getScheduledate(), result) && matchService.teamIsExist(match.getTeam1(), result) || matchService.teamIsExist(match.getTeam2(), result)) {
             result.addError(new FieldError("match", "team1", "team1 or team2 match already scheduled"));
         }
 
         else if (matchService.venueExists(match.getVenue(), result) && matchService.DateIsExist(match.getScheduledate(), result)) {
-            System.out.println((match.getScheduledate())  + "+++++++++++++++++++++++controller");
-            result.addError(new FieldError("match", "scheduledate", "date or venue already exists"));
+             result.addError(new FieldError("match", "scheduledate", "date or venue already exists"));
         }
 
         if (result.hasErrors()) {
@@ -121,7 +121,10 @@ public class MatchController {
         else {
 
             matchService.save(match);
-            return "redirect:viewMatch";
+            redirectAttributes.addFlashAttribute("Addmessage", "Match Scheduled successfully");
+            redirectAttributes.addFlashAttribute("messageType", "match");
+            redirectAttributes.addFlashAttribute("alertType", "success");
+            return "redirect:editMatch";
         }
 
     }
@@ -134,12 +137,11 @@ public class MatchController {
      * @return the string
      */
     @RequestMapping(value = "/upMatch", method = RequestMethod.POST)
-    public String updateMtch(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result) {
+    public String updateMtch(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result, RedirectAttributes redirectAttributes) {
 //        if (matchService.DateIsExist(match.getScheduledate(), result) && matchService.teamIsExist(match.getTeam1(), result)) {
 //            result.addError(new FieldError("match", "team1", "team1 or team2 match already scheduled"));
 //        }
          if (matchService.venueExists(match.getVenue(), result) && matchService.DateIsExist(match.getScheduledate(), result)) {
-            System.out.println((match.getScheduledate())  + "+++++++++++++++++++++++controller");
             result.addError(new FieldError("match", "scheduledate", "date or venue already exists"));
         }
 
@@ -151,7 +153,10 @@ public class MatchController {
         else {
 
             matchService.save(match);
-            return "redirect:viewMatch";
+            redirectAttributes.addFlashAttribute("Updatemessage", "Match Updated successfully");
+            redirectAttributes.addFlashAttribute("messageType", "match");
+            redirectAttributes.addFlashAttribute("alertType", "success");
+            return "redirect:editMatch";
         }
     }
 
@@ -166,15 +171,11 @@ public class MatchController {
     public String updatescore(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result) {
 
         if (match.getTeam1Overs() * 6 * 6 <= Double.parseDouble(match.getTeam1Description())) {
-            System.out.println("++_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+team1");
-
             result.addError(new FieldError("match", "Team1Description", "runs is not greater then balls"));
 
         }
 
         if (match.getTeam2Overs() * 6 * 6 <= Double.parseDouble(match.getTeam2Description())) {
-            System.out.println("++_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_hellooooooo");
-
             result.addError(new FieldError("match", "Team2Description", "runs is not greater then balls"));
 
         }
@@ -264,8 +265,11 @@ public class MatchController {
      */
 //delete a match
     @RequestMapping("/deletematch/{matchid}")
-    public String deletestudent(@PathVariable(name = "matchid") final String id) {
+    public String deletestudent(@PathVariable(name = "matchid") final String id, RedirectAttributes redirectAttributes) {
         matchService.delete(Integer.parseInt(id));
+        redirectAttributes.addFlashAttribute("Deletemessage", "Match Deleted successfully");
+        redirectAttributes.addFlashAttribute("messageType", "match");
+        redirectAttributes.addFlashAttribute("alertType", "success");
         return "redirect:/editMatch";
     }
 

@@ -1,5 +1,7 @@
 package com.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,13 +28,13 @@ public class TeamModel {
     @OneToMany(mappedBy = "team2", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<MatchModel> addteam2;
 
-    @OneToMany(mappedBy = "team")
-    private List<PlayersModel> playersModel;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+     private List<PlayersModel> playersModel;
 
     @OneToMany(mappedBy = "team")
    private List<PointModel> pointModels;
 
-    public TeamModel(long id, String teamname, String captain, String state) {
+    public TeamModel(long id, String teamname, String captain,String state) {
         this.teamname = teamname;
         this.captain = captain;
         this.state = state;
@@ -43,6 +45,9 @@ public class TeamModel {
         this.id = id;
     }
 
+    public TeamModel(long id, boolean teamname, String captain, String state) {
+        this.teamname= String.valueOf(teamname);
+    }
 
 
     public List<PointModel> getPointModels() {

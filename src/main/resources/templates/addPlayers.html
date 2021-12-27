@@ -17,7 +17,7 @@
 }
 
 header{
-     background-color: #212121;
+     background-color: black;
      padding: 30px;
      box-shadow: 0 0 15px #000;
 }
@@ -56,18 +56,22 @@ header ul #logo a{
 <header>
     <ul>
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
-        <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
-        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
-        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
-        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
-        <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
+        <li><a th:href="@{'/editTeam'}">Team Management</a></li>
+        <li><a th:href="@{'/editPlayers'}">Player Management</a></li>
+        <li><a th:href="@{'/editMatch'}">Match Management</a></li>
+        <li><a th:href="@{'/EditListScore'}">Score Board</a></li>
     </ul>
 </header>
 
 <br>
 <br> <h1><b>Add New Player: </b></h1><br>
-
+<div class="alert alert-danger"   role="alert" th:text="${message}" th:if="${message}"></div>
+<br>
+<br>
+<td>
+    <a th:href="@{'/addPlayers/'}"> <input type="button" value="refresh" style="color:blue">
+    </a>
+</td>
 <div class="center">
     <form action="#" th:action="@{/Save}" th:object="${Player}" method="post">
         <div class="txt_field">
@@ -90,7 +94,7 @@ header ul #logo a{
             <div class="alert alert-warning" th:if="${#fields.hasErrors('player_role')}" th:errors="*{player_role}">name not null</div>
 
         </div>
-         <br>
+        <br>
         <td th:if="${#fields.hasErrors('name')}" class="text-danger ml-1" th:errorclass="error" th:errors="*{name}"></td>
         <input type="submit" value="Submit">
     </form>

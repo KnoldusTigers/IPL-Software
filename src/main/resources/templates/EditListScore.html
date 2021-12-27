@@ -17,7 +17,7 @@
 }
 
 header{
-     background-color: #212121;
+     background-color: black;
      padding: 30px;
      box-shadow: 0 0 15px #000;
 }
@@ -74,7 +74,9 @@ tr:hover {
   background-color: black;
   color:white;
 }
-</style>
+
+
+    </style>
 
 </head>
 <body>
@@ -82,18 +84,18 @@ tr:hover {
 <header>
     <ul>
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
-        <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
-        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
-        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
-        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
-        <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
+        <li><a th:href="@{'/editTeam'}">Team Management</a></li>
+        <li><a th:href="@{'/editPlayers'}">Player Management</a></li>
+        <li><a th:href="@{'/editMatch'}">Match Management</a></li>
+        <li><a th:href="@{'/EditListScore'}">Score Board</a></li>
     </ul>
 </header>
 <br>
-<br> <h1><b>Update Score</b></h1><br>
-<table align="center" >
+<br> <h1><b>Score Board</b></h1><br>
+<div id="table=scroll">
+<table align="center" class="css-serial" >
     <tr >
+        <th>S.No</th>
         <th>Team 1 </th>
         <th>Team 2</th>
         <th>Date</th>
@@ -105,6 +107,7 @@ tr:hover {
         <th>Update Score</th>
     </tr>
     <tr th:each="match:${matchModelsList}">
+        <td th:text></td>
         <td th:text="${match.team1.teamname}"></td>
         <td th:text="${match.team2.teamname}"></td>
         <td th:text="${match.scheduledate}"></td>
@@ -121,5 +124,40 @@ tr:hover {
 
     </tr>
 </table>
+</div>
+<footer class="footer navbar-fixed-bottom" id="footer">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color:  black">
+
+        <a class="text-white" href="https://mdbootstrap.com/">© 2021 Copyright: Ipl.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!--style for  serialno. , scrollbar , footer-->
+
+<style>
+ .css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
+}
+
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
+#table-scroll {
+  height:500px;
+  overflow:auto;
+  margin-top:20px;
+}
+#footer {
+position: fixed;
+
+bottom: 28;
+width: 100%;
+/* Height of the footer*/
+height: 40px;
+
+}
+</style>
 </body>
 </html>
