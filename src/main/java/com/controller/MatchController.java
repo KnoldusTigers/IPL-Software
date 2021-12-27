@@ -1,7 +1,5 @@
 package com.controller;
 
-
-
 import com.model.MatchModel;
 import com.model.StateModel;
 import com.model.TeamModel;
@@ -113,22 +111,18 @@ public class MatchController {
     /* default */ final String saveMatch(final @Valid @ModelAttribute("match") MatchModel match, final BindingResult result) {
         if (matchService.DateIsExist(match.getScheduledate(), result) && matchService.teamIsExist(match.getTeam1(), result) || matchService.teamIsExist(match.getTeam2(), result)) {
             result.addError(new FieldError("match", "team1", "team1 or team2 match already scheduled"));
-        }
-
-        else if (matchService.venueExists(match.getVenue(), result) && matchService.DateIsExist(match.getScheduledate(), result)) {
+        } else if (matchService.venueExists(match.getVenue(), result) && matchService.DateIsExist(match.getScheduledate(), result)) {
             out.println((match.getScheduledate())  + "+++++++++++++++++++++++controller");
             result.addError(new FieldError("match", "scheduledate", "date or venue already exists"));
         }
 
         String matchRedirect;
         if (result.hasErrors()) {
-
-            matchRedirect= "matchSchedule";
-        }
-        else {
+            matchRedirect = "matchSchedule";
+        } else {
 
             matchService.save(match);
-            matchRedirect= "redirect:viewMatch";
+            matchRedirect = "redirect:viewMatch";
         }
             return matchRedirect;
     }
@@ -150,13 +144,10 @@ public class MatchController {
 
         String updateRedirect;
         if (result.hasErrors()) {
-
-            updateRedirect= "updateMatch";
-        }
-        else {
-
+            updateRedirect = "updateMatch";
+        } else {
             matchService.save(match);
-            updateRedirect= "redirect:viewMatch";
+            updateRedirect = "redirect:viewMatch";
         }
         return updateRedirect;
     }
@@ -186,11 +177,11 @@ public class MatchController {
         String redirectUpdateScore;
         if (result.hasErrors()) {
             out.println("++_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_");
-            redirectUpdateScore= "UpdateScore";
+            redirectUpdateScore = "UpdateScore";
         } else {
             match = reservice.getResult(match);
             matchService.save(match);
-            redirectUpdateScore= "redirect:EditListScore";
+            redirectUpdateScore = "redirect:EditListScore";
         }
         return redirectUpdateScore;
     }
@@ -208,13 +199,13 @@ public class MatchController {
         model.addAttribute("matchModelsList", matchModelsList);
         return "UpdateScore";
     }
-
     /**
      * Edit score string.
      *
      * @param model the model
      * @return the string
      */
+
 // edit score List
     @GetMapping(value = "/EditListScore")
     public String editScore(final Model model) {
@@ -282,7 +273,7 @@ public class MatchController {
      * @param model the model
      * @return the string
      */
-//show result
+   //show result
     @GetMapping(value = "/result")
     public String viewMatchResult(final Model model) {
         final List<MatchModel> matchModelsList = matchService.getAllMatches();

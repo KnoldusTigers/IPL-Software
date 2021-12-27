@@ -20,7 +20,6 @@
   Finally, it is worth reading the documentation.
 -->
 
-
 <module name="Checker">
     <!--
         If you set the basedir property below, then all reported file

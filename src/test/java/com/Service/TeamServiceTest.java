@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.Mockito.verify;
 
@@ -14,11 +16,12 @@ import static org.mockito.Mockito.verify;
  * The type Team service test.
  */
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 class TeamServiceTest {
     @Mock
     private TeamRepo teamRepo;
 
-    @Mock
+    @Autowired
     private TeamService teamService;
 
 

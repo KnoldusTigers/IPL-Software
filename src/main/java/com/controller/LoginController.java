@@ -62,7 +62,6 @@ import java.util.Objects;
 
 
         } else {
-            //out.println("redirect:/login");
             redirect = "redirect:/login";
         }
         return redirect;
