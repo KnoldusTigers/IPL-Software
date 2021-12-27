@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title> Admin</title>
+    <style>
+    body{
+     background-color: white;
+     padding: 0;
+     margin: 0;
+     overflow-x: hidden;
+     text-align: center;
+}
+
+header{
+     background-color: #212121;
+     padding: 30px;
+     box-shadow: 0 0 15px #000;
+}
+
+header li{
+     display: inline;
+     padding-left: 35px;
+}
+
+header li a{
+     color: white;
+     font-size:22px;
+     text-decoration: none;
+     padding: 10px;
+     transition: .3s ease;
+}
+
+header li a: hover{
+     color: #1b5e20;
+}
+
+header ul #adminLogin a:hover{
+     background-color: #1b5e20;
+}
+
+header ul #logo a{
+    color: white;
+    float: left;
+    top: -7px;
+    font-family: 'Playfair Display';
+    font-size: 20px;
+}
+
+
+</style>
+</head>
+<body>
+<header>
+    <ul>
+        <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
+        <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
+        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
+        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
+        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
+        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
+        <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
+    </ul>
+</header>
+
+<br><br>
+<br> <h1><b>Hey! Admin</b></h1><br>
+<img src="" th:src="@{images/ezgif.com-gif-maker.gif}" alt="" class="center">
+
+</body>
+</html>
+
+<style>
+    .center {
+     display: block;
+     margin-left: 30%;
+     margin-right: auto;
+     width: 50%;
+}
+</style>
+

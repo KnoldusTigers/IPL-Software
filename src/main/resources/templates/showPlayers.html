@@ -1,0 +1,134 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <title>Player detail</title>
+    <style>
+    body{
+     background-color: white;
+     padding: 0;
+     margin: 0;
+     overflow-x: hidden;
+     text-align: center;
+    }
+
+    header{
+     background-color: #212121;
+     padding: 40px;
+     box-shadow: 0 0 15px #000;
+    }
+
+     header li{
+     display: inline;
+     padding-left: 45px;
+    }
+
+     header li a{
+     color: white;
+     font-size:25px;
+     text-decoration: none;
+     padding: 13px;
+     transition: .3s ease;
+     }
+
+     header li a: hover{
+     color: #1b5e20;
+     }
+
+     header ul #adminLogin a{
+     color: #fff;
+     background-color: #484848;
+     border-radius: 20px;
+     float: right;
+     position: relative;
+     top: -1px;
+     transition: .3s ease;
+     }
+
+     header ul #adminLogin a:hover{
+     background-color: #1b5e20;
+     }
+
+    header ul #logo a{
+    color: white;
+    float: left;
+    top: -7px;
+    font-family: 'Playfair Display';
+    font-size: 22px;
+    }
+
+  table {
+  border-collapse: collapse;
+  width: 90%;
+  border: 1px solid grey;
+  box-shadow: 0 0 10px #000;
+ }
+
+ table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  padding: 18px;
+  text-align: center;
+}
+tr{
+   border: 1px solid grey;
+}
+tr:hover {
+  background-color: black;
+  color:white;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <ul>
+        <li id="logo"> <a class="navbar-brand" href="#" > IPL Management System </a> </li>
+        <li><a aria-current="page" href="/"> Home</a></li>
+        <li><a th:href="@{'/Teams'}"> Teams</a></li>
+        <li><a th:href="@{'/showPlayers'}"> Players</a></li>
+        <li><a th:href="@{'/result'}"> Result</a></li>
+        <li><a th:href="@{'/viewMatch'}"> Matches</a></li>
+        <li id="adminLogin"><a class="nav-link "  th:href="@{'/Admin'}">Admin Panel </a> </li>
+    </ul>
+</header>
+
+<br><br>
+<br> <h1><b>Players</b></h1><br>
+
+
+
+<table align="center" style="overflow-y:scroll;">
+
+    <tr >
+        <th>Player Name</th>
+        <th>Player Team</th>
+        <th>Player Role</th>
+    </tr>
+    <tr th:each="player:${playerList}">
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.team.teamname}"></td>
+        <td th:text="${player.player_role}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</div>
+<br>
+<br>
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">Ipl.com</a>
+    </div>
+    <!-- Copyright -->
+</footer></body>
+</html>

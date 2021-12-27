@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> Edit Player</title>
+    <style>
+    body{
+     background-color: white;
+     padding: 0;
+     margin: 0;
+     overflow-x: hidden;
+     text-align: center;
+}
+
+header{
+     background-color: #212121;
+     padding: 30px;
+     box-shadow: 0 0 15px #000;
+}
+
+header li{
+     display: inline;
+     padding-left: 35px;
+}
+
+header li a{
+     color: white;
+     font-size:22px;
+     text-decoration: none;
+     padding: 10px;
+     transition: .3s ease;
+}
+
+header li a: hover{
+     color: #1b5e20;
+}
+
+header ul #adminLogin a:hover{
+     background-color: #1b5e20;
+}
+
+header ul #logo a{
+    color: white;
+    float: left;
+    top: -7px;
+    font-family: 'Playfair Display';
+    font-size: 20px;
+}
+
+
+ table {
+  border-collapse: collapse;
+  width: 90%;
+  border: 1px solid grey;
+  box-shadow: 0 0 10px #000;
+ }
+
+ table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td {
+  padding: 18px;
+  text-align: center;
+}
+tr{
+   border: 1px solid grey;
+}
+
+
+</style>
+</head>
+<body>
+<header>
+    <ul>
+        <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
+        <li><a th:href="@{'/addTeam'}">Add Teams</a></li>
+        <li><a th:href="@{'/addPlayers'}">Add Players</a></li>
+        <li><a th:href="@{'/matchSchedule'}"> Schedule Match</a></li>
+        <li><a th:href="@{'/editPlayers'}">Edit Player</a></li>
+        <li><a th:href="@{'/editMatch'}">Edit Match</a></li>
+        <li><a th:href="@{'/EditListScore'}">Update Score</a></li>
+    </ul>
+</header>
+<tr> </tr>
+<br>
+
+<br> <h1><b>Edit Players</b></h1><br>
+
+
+<table align="center" >
+
+    <tr >
+        <th>Player Name</th>
+        <th>Player Team</th>
+        <th>Player Role</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <tbody>
+
+    <tr th:each="player:${playerList}" style="color:black;">
+        <td th:text="${player.name}">
+            <!--      <a th:href="@{/showPlayers/{team_id}(team_id=${Team.id})}">[[${Team.team_name}]]</a>-->
+        </td>
+        <td th:text="${player.team.teamname}"></td>
+        <td th:text="${player.player_role}"></td>
+
+        <td>
+            <a th:href="@{'/edit/' + ${player.id}}"><i class="fa fa-edit" style="font-size:24px; color:green"></i></a>
+        </td>
+        <td>
+            <a th:href="@{'/delete/' + ${player.id}}"><i class="fa fa-trash-o" style="font-size:24px; color:red"></i></a>
+        </td>
+    </tbody>
+    </tr>
+
+</table>
+</body>
+<br>
+<div class="footer">
+<footer class="bg-light text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2021 Copyright:
+        <a class="text-dark" href="https://mdbootstrap.com/">Ipl.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+</div>
+
+
+
+
+</html>
