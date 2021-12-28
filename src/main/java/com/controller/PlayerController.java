@@ -201,7 +201,6 @@ public class PlayerController {
          redirectAttributes.addFlashAttribute("deletemessage", "Player Deleted successfully");
          redirectAttributes.addFlashAttribute("messageType", "player");
          redirectAttributes.addFlashAttribute("alertType", "success");
-
          return "redirect:/editPlayers";
     }
 }

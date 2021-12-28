@@ -5,6 +5,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
     <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
     <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title> Add Team</title>
     <style>
     body{
@@ -66,13 +70,12 @@ header ul #logo a{
 <h1><b>Schedule a Match  </b></h1><br>
 <br>
 <br>
-<td>
-    <a th:href="@{'/matchSchedule/'}"> <input type="button" value="refresh" style="color:blue">
-    </a>
-</td>
 
 <div class="center">
     <form action="#" th:action="@{/SaveMatch}" th:object="${match}" method="post">
+        <a  style="position:absolute; top: 8px; right: 16px;" th:href="@{'/matchSchedule/'}"><i class="fa fa-refresh" aria-hidden="true"></i>
+        </a>
+
         <br>
         <div class="mb-3">
             <h3>Team1</h3>

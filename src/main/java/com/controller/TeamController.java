@@ -61,7 +61,7 @@ public class TeamController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String saveTeam(@Valid @ModelAttribute("Team") TeamModel tm, BindingResult result, RedirectAttributes redirectAttributes) {
         if (service.teamNameExists(tm.getTeamname())) {
-            result.addError(new FieldError("tm", "teamname", "name already exists"));
+            result.addError(new FieldError("tm", "teamname", "Team already exists"));
         }
         if (result.hasErrors()) {
             return "addTeam";

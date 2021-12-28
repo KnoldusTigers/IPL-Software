@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
     <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
     <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+     <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+    <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title> Add Team</title>
     <style>
     body{
@@ -64,16 +68,16 @@ header ul #logo a{
 </header>
 
 <br>
+
 <br> <h1><b>Add New Player: </b></h1><br>
-<div class="alert alert-danger"   role="alert" th:text="${message}" th:if="${message}"></div>
 <br>
 <br>
-<td>
-    <a th:href="@{'/addPlayers/'}"> <input type="button" value="refresh" style="color:blue">
-    </a>
-</td>
+
+
 <div class="center">
     <form action="#" th:action="@{/Save}" th:object="${Player}" method="post">
+        <a  style="position:absolute; top: 8px; right: 16px;" th:href="@{'/addPlayers/'}"><i class="fa fa-refresh" aria-hidden="true"></i>
+        </a>
         <div class="txt_field">
             <input type="text" required placeholder="Enter Player's Name" th:field="*{name}">
             <span></span>
@@ -95,10 +99,12 @@ header ul #logo a{
 
         </div>
         <br>
-        <td th:if="${#fields.hasErrors('name')}" class="text-danger ml-1" th:errorclass="error" th:errors="*{name}"></td>
+        <p th:if="${#fields.hasErrors('name')}" class="text-danger ml-1" th:errorclass="error" th:errors="*{name}"></p>
         <input type="submit" value="Submit">
     </form>
 </div>
+<div class="alert alert-danger"   role="alert" th:text="${message}" th:if="${message}"></div>
+
 </body>
 </html>
 <style>

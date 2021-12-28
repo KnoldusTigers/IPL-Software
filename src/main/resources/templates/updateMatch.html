@@ -3,10 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <title> Update Match</title>
+     <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
     <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
     <link href='https://fonts.googleapis.com/css?family=Playfair Display' rel='stylesheet'>
-    <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <style>
     body{
      background-color: white;
      padding: 0;
@@ -57,20 +59,24 @@ header ul #logo a{
         <li id="logo"> <a aria-current="page" href="/"> IPL Management System </a> </li>
         <li><a th:href="@{'/editTeam'}">Team Management</a></li>
         <li><a th:href="@{'/addPlayers'}">Player Management</a></li>
-        <li><a th:href="@{'/matchSchedule'}"> Match Management</a></li>
+        <li><a th:href="@{'/editMatch'}"> Match Management</a></li>
         <li><a th:href="@{'/EditListScore'}">Score Board</a></li>
     </ul>
 </header> <br><br>
 <h1><b>Update Match:  </b></h1><br>
+<br>
+
 <div class="center">
     <br>
     <br>
-    <td>
-        <a th:href="@{'/updateMatch/'}"> <input type="button" value="refresh" style="color:blue">
-        </a>
-    </td>
+
     <br>
     <form action="#" th:action="@{/upMatch}" th:object="${match}" method="post">
+
+            <a  style="position:absolute; top: 8px; right: 16px;" th:href="@{'/editmatch/' + ${match.matchid}}"><i class="fa fa-refresh" aria-hidden="true"></i>
+            </a>
+
+
         <div class="input-group">
             <span class="input-group-text" hidden >Match ID</span>
             <input type="text" readonly aria-label="" hidden class="form-control" th:field="*{matchid}" />
@@ -151,7 +157,6 @@ label {
 
         </div>
         <br>
-
         <input type="submit" value="Submit">
     </form>
 </div>
