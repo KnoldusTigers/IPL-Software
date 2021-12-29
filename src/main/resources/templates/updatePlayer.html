@@ -69,7 +69,7 @@ header ul #logo a{
 
 <div class="center">
     <form action="#" th:action="@{/UpdatePlayers}" th:object="${Player}" method="post">
-        <a  style="position:absolute; top: 8px; right: 16px;" th:href="@{'/edit/' + ${player.id}}"><i class="fa fa-refresh" aria-hidden="true"></i>
+        <a  style="position:absolute; top: 8px; right: 16px;" th:href="@{'/edit/' + ${Player.id}}"><i class="fa fa-refresh" aria-hidden="true"></i>
         </a>
         <br><br>
         <div class="input-group">

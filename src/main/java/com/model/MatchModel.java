@@ -1,9 +1,6 @@
 package com.model;
 
-
-
 import com.validations.MatchValidation;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

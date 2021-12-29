@@ -2,13 +2,13 @@ package com.controller;
 
 
 
+import com.dao.MatchRepo;
+import com.google.gson.Gson;
 import com.model.MatchModel;
 import com.model.StateModel;
 import com.model.TeamModel;
-import com.service.MatchService;
-import com.service.ResultService;
-import com.service.StateService;
-import com.service.TeamService;
+import com.service.*;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,26 +28,21 @@ import java.util.List;
 @Controller
 public class MatchController {
 
-    /**
-     *
-     */
+
     @Autowired
      private final ResultService reservice;
-    /**
-     *
-     */
+    @Autowired
+    ProducerService producerService;
     @Autowired
     private final MatchService matchService;
-    /**
-     *
-     */
+
     @Autowired
     private final TeamService teamService;
-    /**
-     *
-     */
+
     @Autowired
     private final StateService stateService;
+    @Autowired
+    MatchRepo matchRepo;
 
     /**
      * Instantiates a new Match controller.
@@ -172,21 +167,28 @@ public class MatchController {
 
         if (match.getTeam1Overs() * 6 * 6 <= Double.parseDouble(match.getTeam1Description())) {
             result.addError(new FieldError("match", "Team1Description", "runs is not greater then balls"));
-
         }
 
         if (match.getTeam2Overs() * 6 * 6 <= Double.parseDouble(match.getTeam2Description())) {
             result.addError(new FieldError("match", "Team2Description", "runs is not greater then balls"));
-
         }
+//        match.getResult();
+//        match.getMatchid();
+//        System.out.println(match.getResult()+"-0000000000000000000000000000000000000000000000000000000000000000000000000000000000=");
+//        producerService.publishToTopic(match);
         if (result.hasErrors()) {
-            System.out.println("++_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_");
-            return "UpdateScore";
-        } else {
+             return "UpdateScore";
+        }
+
+        else {
             match = reservice.getResult(match);
+            producerService.publishToTopic(match);
             matchService.save(match);
+
+
             return "redirect:EditListScore";
         }
+
     }
 
     /**
